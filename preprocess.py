@@ -78,5 +78,5 @@ train_data = train_data.merge(temp_t, left_on='trainer_index', right_on='trainer
 train_data['trainer_ave_rank'].fillna(7,inplace=True)
 
 #2.2.5 Save to csv file.
-train_data.to_csv(path_or_buf='traing.csv')
-test_data.to_csv(path_or_buf='test.csv')
+train_data.to_csv(path_or_buf='training.csv')
+test_data.to_csv(path_or_buf='testing.csv')
