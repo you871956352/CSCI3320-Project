@@ -33,16 +33,19 @@ data['recent_ave_rank'] = data.recent_6_runs.apply(lambda x : ave(x))
 #2.2.3 Indexes
 #Horse.
 horse = np.array(data.horse_id.unique())
+print("horse number: ", horse.shape[0])
 def get_horse_index(string):
         return np.where(horse == string)[0][0]
 data['horse_index'] = data.horse_id.apply(lambda x: get_horse_index(x))
 #Jockey.
 jockey = np.array(data.jockey.unique())
+print("jockey number: ", jockey.shape[0])
 def get_jockey_index(string):
         return np.where(jockey == string)[0][0]
 data['jockey_index'] = data.jockey.apply(lambda x: get_jockey_index(x))
 #Trainer.
 trainer = np.array(data.trainer.unique())
+print("trainer number: ", trainer.shape[0])
 def get_trainer_index(string):
         return np.where(trainer == string)[0][0]
 data['trainer_index'] = data.trainer.apply(lambda x: get_trainer_index(x))
