@@ -21,7 +21,7 @@ nlist = range(1,len(positions)+1)
 # plot the graph
 plt.ylabel('position')
 plt.xlabel('game id')
-plt.xlim(0, 7)  
+plt.axis([0,7,0,13])
 plt.xticks(nlist, races)
 plt.title('Posiyion of Horse %s in Recent 6 Runs'%(horse_id))
 plt.plot(nlist, positions)
