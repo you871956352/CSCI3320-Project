@@ -16,7 +16,7 @@ data['recent_6_runs'] = data.groupby('horse_id').recent_6_runs.apply(lambda x : 
 def clean(string):
     count = string.count('/') + 1
     if count > 6:
-        return string.split('/',count - 5)[-1]
+        return string.split('/',count - 6)[-1]
     else:
         return string
 data['recent_6_runs'] = data.recent_6_runs.apply(lambda x : clean(x))
