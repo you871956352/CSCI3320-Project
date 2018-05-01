@@ -1,19 +1,7 @@
 import pandas as pd
-from sklearn.model_selection import KFold
-from sklearn.model_selection import cross_val_score
-import matplotlib.pyplot as plt
 import numpy as np
-from sklearn import datasets, linear_model
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import precision_score
-from sklearn.metrics import recall_score
-from sklearn.naive_bayes import GaussianNB
-from sklearn import svm, datasets
-from sklearn.ensemble import RandomForestClassifier
-import seaborn
-import time
-import csv
-seaborn.set()
+import matplotlib.pyplot as plt
+from sklearn.svm import SVC
 
 def make_meshgrid(x, y, h=.02):
     """Create a mesh of points to plot in
@@ -35,9 +23,9 @@ def make_meshgrid(x, y, h=.02):
     return xx, yy
 
 
-train = pd.read_csv('../training.csv',
-            header=0,
-            names=['','finishing_position','horse_number','horse_name','horse_id','jockey','trainer','actual_weight','declared_horse_weight','draw','length_behind_winner','running_position_1','running_position_2','running_position_3','running_position_4','finish_time','win_odds','running_position_5','running_position_6','race_id','recent_6_runs','recent_ave_rank','jockey_ave_rank','trainer_ave_rank','race_distance'],index_col=False,na_values=[])
+train = pd.read_csv('../training.csv')
+
+train = train[['finishing_position','horse_number','horse_name','horse_id','jockey','trainer','actual_weight','declared_horse_weight','draw','length_behind_winner','running_position_1','running_position_2','running_position_3','running_position_4','finish_time','win_odds','running_position_5','running_position_6','race_id','recent_6_runs','recent_ave_rank','jockey_ave_rank','trainer_ave_rank','race_distance']]
 
 X = train[['recent_ave_rank', 'jockey_ave_rank']].values
 
@@ -48,12 +36,6 @@ X11 = []
 X10 = []
 y0 = []
 y1 = []
-X01 = np.asarray(X01)
-X00 = np.asarray(X00)
-X11 = np.asarray(X11)
-X10 = np.asarray(X10)
-y0 = np.asarray(y0)
-y1 = np.asarray(y1)
 
 for i in range(0, train_win3.shape[0]):
   race = train['race_id'][i]
@@ -81,7 +63,7 @@ y = iris.target
 print(y)
 '''
 
-model = svm.SVC(kernel='linear')
+model = SVC(kernel='linear')
 model.fit(X,y)
 X0, X1 = X[:, 0], X[:, 1]
 xx, yy = make_meshgrid(X0, X1)

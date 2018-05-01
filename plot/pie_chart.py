@@ -3,7 +3,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn
 import csv
-seaborn.set()
 
 train = pd.read_csv('../training.csv')
 
