@@ -1,11 +1,7 @@
 import pandas as pd
 import numpy as np
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestClassifier as RFC
 import matplotlib.pyplot as plt
-
-def to_seconds(x):
-	x_arr = x.split('.')
-	return (int(x_arr[0]) * 60+int(x_arr[1]) + int(x_arr[2]) * 0.001)
 
 df_train = pd.read_csv('../training.csv',
             header=None,
@@ -28,13 +24,13 @@ print(df_train.actual_weight[0])
 rf_model = RandomForestClassifier(max_depth=10, random_state=0)
 rf_model.fit(X_train_numeric, y_train)
 importatnce_list = rf_model.feature_importances_
+
+
 features_names = ['actual\n_weight','declared_\nhorse_weight','draw','win_odds','jockey_\nave_rank','trainer\n_ave_rank','recent_\nave_rank','race_\ndistance']
 sorted_features = [x for _, x in sorted(zip(importatnce_list,features_names), key=lambda pair: pair[0],reverse=True)]
 sorted_importance = sorted(importatnce_list,reverse=True)
 
-
 y_pos = np.arange(len(sorted_features))
-
 
 plt.bar(y_pos, sorted_importance, align='center', alpha=0.5)
 plt.xticks(y_pos, sorted_features,size=6,rotation='vertical')

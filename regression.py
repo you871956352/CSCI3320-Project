@@ -85,8 +85,8 @@ def gbrt_model(X, y, X_test, y_test):
     gbrt_model = GBRT(loss='huber')
     huber = gbrt_model.fit(X, y).score(X, y)
     #print(huber)
-    #result = gbrt_model.predict(X_test)
-    #evaluation(result,y_test)
+    result = gbrt_model.predict(X_test)
+    evaluation(result,y_test)
     # Run time
     running_time = time.time() - start_time
     print("Running time : %s seconds" % running_time)
